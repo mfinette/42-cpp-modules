@@ -6,56 +6,48 @@
 #    By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/09 10:20:32 by mfinette          #+#    #+#              #
-#    Updated: 2023/10/09 10:40:13 by mfinette         ###   ########.fr        #
+#    Updated: 2023/10/10 15:08:15 by mfinette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME		= megaphone
+	
+CC			= c++
+FLAGS		= -Wall -Wextra -Werror
+RM			= rm -rf
 
-CC		= c++
-CFLAGS	= -Wall -Wextra -std=c++98
-AR		= ar rcs
-RM		= @rm -f
-DEF_COLOR = \033[0;39m
-YELLOW = \033[0;93m
-GREEN = \033[0;92m
-BLUE = \033[0;94m
-CYAN = \033[0;96m
+OBJDIR = .objFiles
 
-FILES = megaphone
+FILES		= megaphone
+
+SRC			= $(FILES:=.cpp)
+OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
+
+#Colors:
+GREEN		=	\e[92;5;118m
+YELLOW		=	\e[93;5;226m
+GRAY		=	\e[33;2;37m
+RESET		=	\e[0m
+CURSIVE		=	\e[33;3m
 
 all: $(NAME)
 
-SRCS_DIR = ./
-SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))
+$(NAME): $(OBJ)
+	@$(CC) $(OBJ) -o $(NAME)
+	@printf "$(_SUCCESS) $(GREEN)- Executable ready.\n$(RESET)"
 
-OBJS_DIR = ./
-OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
-
-%.o:%.cpp
-	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME): $(OBJS)
-	@echo "$(GREEN)😳😎executable compiled!😎😳$(DEF_COLOR)"
-	@${CC} ${FLAGS} ${SRCS} -o ${NAME}
-
+$(OBJDIR)/%.o: %.cpp 
+	@mkdir -p $(dir $@)
+	@$(CC) $(FLAGS) $(OPTS) -c $< -o $@
 
 clean:
-	@$(RM) $(OBJS)
-	@echo "$(CYAN)executable object files cleaned!$(DEF_COLOR)"
+	@$(RM) $(OBJDIR) $(OBJ)
+	@printf "$(YELLOW)    - Object files removed.$(RESET)\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(CYAN)3$(DEF_COLOR)"
-	@sleep 0.2
-	@echo "$(CYAN)2$(DEF_COLOR)"
-	@sleep 0.2
-	@echo "$(CYAN)1$(DEF_COLOR)"
-	@sleep 0.2
-	@echo "$(GREEN)executable files cleaned!$(DEF_COLOR)"
-
+	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus norm
