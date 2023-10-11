@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:37:03 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/10 17:02:48 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:01:10 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class Contact
 		string	getText(string str);
 		void	displayLine(int index);
 		void	setContact();
+		void	initContact();
 };
 
 #endif

@@ -6,14 +6,14 @@
 #    By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/09 10:20:32 by mfinette          #+#    #+#              #
-#    Updated: 2023/10/10 15:09:42 by mfinette         ###   ########.fr        #
+#    Updated: 2023/10/11 18:04:20 by mfinette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= PhoneBook
 	
 CC			= c++
-FLAGS		= -Wall -Wextra -Werror
+FLAGS		= -Wall -Wextra -Werror -g3 -std=c++98
 RM			= rm -rf
 
 OBJDIR = .objFiles

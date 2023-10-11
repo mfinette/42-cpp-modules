@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:39:04 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/10 17:07:03 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:13:47 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ string  Contact::getText(string str)
 
 void    Contact::displayLine(int index)
 {
-    cout << "|" << std::setw(5) << index << "." << std::setw(6);
+    cout << "|" << std::setw(5) << index + 1 << "." << std::setw(6);
     cout << "|" << std::setw(10) << Trunc(this->_firstname);
     cout << "|" << std::setw(10) << Trunc(this->_lastname);
     cout << "|" << std::setw(10) << Trunc(this->_number);
@@ -50,4 +50,13 @@ void	Contact::setContact()
     this->_nickname = getText("Nickname : ");
     this->_number = getText("Number: ");
     this->_secret = getText("Darkest secret: ");
+}
+
+void    Contact::initContact()
+{
+    this->_firstname = "";
+    this->_lastname = "";
+    this->_nickname = "";
+    this->_number = "";
+    this->_secret = "";
 }

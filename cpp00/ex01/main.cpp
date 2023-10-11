@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:54 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/10 17:03:37 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:16:15 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main()
 	PhoneBook PhoneBook;
 	string	cmd;
 	
+	PhoneBook.initContacts();
 	while(cmd.compare("EXIT") != 0)
 	{
 		cout << "wsh donne une cmd: ";
