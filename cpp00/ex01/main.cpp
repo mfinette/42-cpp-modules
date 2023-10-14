@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:54 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/14 16:56:48 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/14 17:08:00 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main()
 		getline(cin, cmd);
 		if(cin.eof())
 		{
-			return ((cout << "\naplus c la fin\n"), 1);
+			return ((cout << "CTRL + D detected : exiting PhoneBook\n"), 1);
 		}
 		if (cmd.compare("ADD") == 0)
 			PhoneBook.Add();
