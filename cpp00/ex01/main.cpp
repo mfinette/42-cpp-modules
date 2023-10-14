@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:35:54 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/11 18:16:15 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/14 16:56:48 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@ int	main()
 	string	cmd;
 	
 	PhoneBook.initContacts();
-	while(cmd.compare("EXIT") != 0)
+	while(true)
 	{
-		cout << "wsh donne une cmd: ";
+		cout << "PhoneBook: ";
 		getline(cin, cmd);
 		if(cin.eof())
 		{
-			return (cout << "\naplus c la fin\n"), 1;
+			return ((cout << "\naplus c la fin\n"), 1);
 		}
 		if (cmd.compare("ADD") == 0)
 			PhoneBook.Add();
 		else if (cmd.compare("SEARCH") == 0)
-			PhoneBook.printPhoneBook();
+			PhoneBook.Search();
+		else if (cmd.compare("EXIT") == 0)
+			return ((cout << "exiting PhoneBook" << endl), 0);
 		else
-			cout <<"ca veux rien dire : " << cmd << endl;
+			cout <<":( invalid input :(" << endl;
 	}
 }

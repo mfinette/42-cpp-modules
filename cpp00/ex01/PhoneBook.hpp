@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:37:20 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/11 17:59:52 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:55:54 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class	PhoneBook
 		void	printPhoneBook();
 		void	initContacts();
 		void	Add();
+		void	Search();
 };
 
 #endif
