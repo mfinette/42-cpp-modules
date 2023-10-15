@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 11:09:07 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/15 12:07:47 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/15 15:25:11 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,5 @@ int main()
 		club.setType("some other type of club");
 		jim.attack();
 	}
-	HumanB patrick("Patrick");
-	patrick.attack();
-	return 0;
+	return (0);
 }
