@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 11:09:12 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/15 11:42:17 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/15 17:47:40 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	Weapon::setType(string type)
 	this->_type = type;
 }
 
-const string	Weapon::getType()
+const string	&Weapon::getType()
 {
 	return (this->_type);
 }
