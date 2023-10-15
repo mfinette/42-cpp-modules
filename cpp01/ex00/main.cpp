@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 09:54:56 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/15 10:03:25 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/15 15:04:32 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(){
 
 	cout << "-----TESTS-------" << endl;
     Zombie *HeapZombie = newZombie(name);
-	cout << "Testing if HeapZombie and StackZombie can announce themself : " << endl;
+	cout << "Testing if HeapZombie and StackZombie can announce themselves : " << endl;
     HeapZombie->announce();
     StackZombie.announce();
 
