@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 14:56:04 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/15 15:00:16 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/15 15:58:34 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(void)
 		cout << "Welcome to HARL simulator. Please enter an error level" << endl;
 		cout << "Error levels : DEBUG, INFO, WARNING, ERROR" << endl;
 		cin >> cmd;
-		harl.complain(cmd);
 		if (cin.eof())
 			return (0);
+		harl.complain(cmd);
 	}
 }
