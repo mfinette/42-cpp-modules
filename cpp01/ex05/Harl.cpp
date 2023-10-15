@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 14:35:15 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/15 15:56:26 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/15 15:59:24 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	Harl::error()
 	cout << RED << ERROR << RESET << endl;
 }
 
-void Harl::complain(string inputLevel) {
+void Harl::complain(string inputLevel)
+{
 	t_func  funcs[] = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
 	string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int i = 0;
