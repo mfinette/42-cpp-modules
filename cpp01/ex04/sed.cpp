@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:46:59 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/15 18:16:06 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/16 09:35:26 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,10 @@ void	Sed::replace(string s1, string s2)
 
 	while ((found = buffer.find(s1, pos)) != string::npos)
 	{
-		output_str << buffer.substr(pos, found - pos); // Copy content before the match
-
-		if (s1.length() == s2.length()) {
-			// If s1 and s2 have the same length, simply append s2.
-			output_str << s2;
-		} else {
-			// If s1 and s2 have different lengths, adjust the position accordingly.
-			output_str << s2;
-			pos = found + s1.length(); // Move the position past the match
-		}
+		output_str << buffer.substr(pos, found - pos);
+		output_str << s2;
+		if (s1.length() != s2.length())
+			pos = found + s1.length();
 	}
 	output_str << buffer;
 	output_str.close();
