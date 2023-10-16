@@ -6,7 +6,7 @@
 #    By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/15 12:20:27 by mfinette          #+#    #+#              #
-#    Updated: 2023/10/15 14:10:22 by mfinette         ###   ########.fr        #
+#    Updated: 2023/10/16 11:52:18 by mfinette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ RM			= rm -rf
 
 OBJDIR = .objFiles
 
-FILES		= main sed
+FILES		= main
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= sed.hpp
+HEADER		= 
 
 #Colors:
 GREEN		=	\e[92;5;118m
