@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:37:38 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/19 15:12:21 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:05:35 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,14 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	this->_hp += amount;
 	cout << "ClapTrap " << this->_name << " heals for " << amount << " hp. It now has " << this->_hp << " hp !" << endl;
+}
+
+ClapTrap	&ClapTrap::operator=(ClapTrap const &src)
+{
+	cout << "ClapTrap " << src._name << " has been copied on "<< this->_name << " with copy assignment operator." << std::endl;
+	this->_name = src._name;
+	this->_hp = src._hp;
+	this->_ep = src._ep;
+	this->_ad = src._ad;
+	return (*this);
 }
