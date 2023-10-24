@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:06:01 by maxime            #+#    #+#             */
-/*   Updated: 2023/10/20 17:32:51 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:38:33 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CAT_HPP
 
 # include <iostream>
-# include <string>
 # include "Animal.hpp"
 
 class Cat : public Animal
@@ -25,7 +24,7 @@ class Cat : public Animal
 
 		Cat();
 		Cat(Cat const &src);
-		~Cat();
+		virtual ~Cat();
 		void		makeSound() const;
 		Cat 		&operator=(Cat const &rhs);
 };

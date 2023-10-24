@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:25:21 by maxime            #+#    #+#             */
-/*   Updated: 2023/10/20 17:32:55 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:38:39 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define DOG_HPP
 
 # include <iostream>
-# include <string>
 # include "Animal.hpp"
 
 class Dog : public Animal
@@ -25,7 +24,7 @@ class Dog : public Animal
 
 		Dog();
 		Dog(Dog const &src);
-		~Dog();
+		virtual ~Dog();
 		void		makeSound() const;
 		Dog 		&operator=(Dog const &rhs);
 };

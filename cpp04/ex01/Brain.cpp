@@ -14,7 +14,7 @@ Brain::Brain()
 Brain::Brain(const Brain &src)
 {
 	for (int i = 0; i < 100; i++)
-		this->_ideas[i] = src._ideas[i] " copy";
+		this->_ideas[i] = src._ideas[i] + " copy";
 	cout << "Brain copy constructor called" << endl;
 }
 
@@ -39,7 +39,6 @@ Brain 	&Brain::operator=(Brain const &rhs)
 		this->_ideas[i] = rhs._ideas[i];
 	return *this;
 }
-
 
 /*
 ** --------------------------------- METHODS ----------------------------------

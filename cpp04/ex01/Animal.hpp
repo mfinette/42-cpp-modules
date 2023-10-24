@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:04:16 by maxime            #+#    #+#             */
-/*   Updated: 2023/10/20 17:40:19 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:42:12 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ANIMAL_HPP
 
 # include <iostream>
-# include <sstream>
 # include "Brain.hpp"
 
 using std::string;
