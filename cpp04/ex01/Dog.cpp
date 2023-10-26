@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:24:45 by maxime            #+#    #+#             */
-/*   Updated: 2023/10/23 23:55:33 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:47:29 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ Dog::Dog( const Dog & src ) : Animal()
 	std::cout << "Dog deep copy constructor called" << std::endl;
 	this->_type = src._type;
 	this->_Brain = new Brain;
-	*this = src;
 }
 
 /*

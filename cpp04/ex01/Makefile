@@ -6,7 +6,7 @@
 #    By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 13:37:00 by mfinette          #+#    #+#              #
-#    Updated: 2023/10/20 17:40:57 by mfinette         ###   ########.fr        #
+#    Updated: 2023/10/26 11:35:04 by mfinette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ RM			= rm -rf
 
 OBJDIR = .objFiles
 
-FILES		= main Animal Cat Dog WrongAnimal WrongCat Brain
+FILES		= main Animal Cat Dog Brain
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
+HEADER		= Animal.hpp Cat.hpp Dog.hpp Brain.hpp
 
 #Colors:
 GREEN		=	\e[92;5;118m
