@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:32:23 by maxime            #+#    #+#             */
-/*   Updated: 2023/10/20 11:26:12 by maxime           ###   ########.fr       */
+/*   Updated: 2023/10/30 09:34:09 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int main()
 	const WrongCat* wrongcat = new WrongCat();
 	wrongcat->makeSound();
 	delete wrongcat;
+	cout << "---------------------" << endl << endl;
+	cout << "----- TEST WRONGCAT AS WRONGANIMAL ------" << endl;
+	WrongAnimal *animals = new WrongCat;
+	animals->makeSound();
+	delete animals;
 	cout << "---------------------" << endl << endl;
 	return (0);
 }

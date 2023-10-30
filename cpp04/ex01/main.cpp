@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 10:32:23 by maxime            #+#    #+#             */
-/*   Updated: 2023/10/26 11:37:34 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:36:27 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 int main()
 {
 	cout << "-----Constructors-----" << endl;
-	const Animal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
+	const Animal *animals[4] = {new Dog(), new Dog(), new Cat(), new Cat()};
 
 	cout << "-----Destructors-----" << endl;
-	for ( int i = 0; i < 4; i++ ) {
+	for (int i = 0; i < 4; i++)
+	{
 		cout << "Animal [" << i << "]" << endl;
 		delete animals[i];
 		cout << "--------" << endl;
