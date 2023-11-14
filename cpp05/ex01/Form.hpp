@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:11:14 by mfinette          #+#    #+#             */
-/*   Updated: 2023/11/01 17:08:11 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:17:29 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define FORM_HPP
 
 #include "Bureaucrat.hpp"
+
+using std::string;
+
+class Bureaucrat;
 
 class	Form
 {
@@ -40,5 +44,7 @@ class	Form
 		// Methods
 		void			beSigned(const Bureaucrat &b);
 };
+
+std::ostream &operator<<(std::ostream &out, Form &src);
 
 # endif

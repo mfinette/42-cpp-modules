@@ -6,11 +6,12 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:46:42 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/31 17:08:13 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:15:48 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 //Constructors  Destructors and Operator
 
 Bureaucrat::Bureaucrat() : _grade(1), _name("Default")  
@@ -70,6 +71,19 @@ void	Bureaucrat::increaseGrade()
 		throw Bureaucrat::GradeTooHighException();
 	else
 		this->_grade--;
+}
+
+// Methods
+
+void Bureaucrat::signForm(Form &form) {
+	try {
+		form.beSigned(*this);
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException &e) {
+		std::cout << this->getName() << " couldn't sign " << form.getName() <<
+			" because: " << e.what() << std::endl;
+	}
 }
 
 // Exceptions

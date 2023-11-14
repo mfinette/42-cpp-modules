@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:46:44 by mfinette          #+#    #+#             */
-/*   Updated: 2023/10/31 17:08:04 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:19:15 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 
 #include <string>
 #include <iostream>
+#include "Form.hpp"
 
 using std::string;
 using std::cout;
 using std::exception;
 using std::endl;
 using std::ostream;
+
+class Form;
 
 class Bureaucrat
 {
@@ -55,6 +58,9 @@ class Bureaucrat
 			public:
 				const char * what() const throw();
 		};
+		
+		// Methods
+		void				signForm(Form &form);
 };
 
 // Ostream operator
