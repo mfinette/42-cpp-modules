@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 16:45:13 by mfinette          #+#    #+#             */
-/*   Updated: 2023/11/14 16:12:00 by mfinette         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:02:29 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 int main() {
 	try {
 		Bureaucrat bur("pawn", 42);
-		Form form("Dummy form", 10, 10);
+		Form form("Bail de location", 10, 10);
 		std::cout << form << std::endl;
 		bur.signForm(form);
 
-		Form form2("Dummy form", 50, 10);
+		Form form2("Cheque vacance", 50, 10);
 		std::cout << form2 << std::endl;
 		bur.signForm(form2);
 	}
-	catch (std::exception & e) {
+	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 		return (1);
 	}
