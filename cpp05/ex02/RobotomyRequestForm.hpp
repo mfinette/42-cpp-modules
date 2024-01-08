@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:54:20 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/08 14:56:56 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:06:13 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ class RobotomyRequestForm : public AForm
 				~RobotomyRequestForm();
 
 	// METHODS
-		void	execute(const Bureaucrat &executor);	
+		void	execute(const Bureaucrat &executor);
+
+	// OPERATOR
+		RobotomyRequestForm		&operator=(const RobotomyRequestForm& other);
+
 };
 
 #endif

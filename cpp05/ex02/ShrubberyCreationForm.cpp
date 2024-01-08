@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:33:39 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/08 13:19:10 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:04:27 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &executor)
 		throw ExecUnsignedException();
 	if (this->_gradetoexec < executor.getGrade())
 		throw GradeTooLowException();
+	this->executeConcrete();
 }
 
 void	ShrubberyCreationForm::executeConcrete() const
@@ -50,7 +51,7 @@ void	ShrubberyCreationForm::executeConcrete() const
 		std::cerr << "Error while opening Shrubbery target file" << std::endl;
 
 	fs <<
-	"						                   # #### ####\n"
+	"						         # #### ####\n"
     "                            ### \\/#|### |/####\n"
     "                           ##\\/#/ \\||/##/_/##/_#\n"
     "                         ###  \\/###|/ \\/ # ###\n"
@@ -64,4 +65,9 @@ void	ShrubberyCreationForm::executeConcrete() const
     "                            , -=-~{ .-^- _\n"
     "                                  `}\n ";
 	fs.close();	
+}
+
+ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
+	if (this != &other) {}
+	return *this;
 }

@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:59:35 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/08 15:09:50 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:05:09 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor)
 		throw ExecUnsignedException();
 	if (this->_gradetoexec < executor.getGrade())
 		throw GradeTooLowException();
+	this->executeConcrete();
 }
 
 void	RobotomyRequestForm::executeConcrete() const
@@ -45,4 +46,9 @@ void	RobotomyRequestForm::executeConcrete() const
 		cout << this->_target << " has been succesfully robotomized" << std::endl;
 	else
 		cout << "robotomy on " << this->_target << "failed" << std::endl;
+}
+
+RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
+	if (this != &other) {}
+	return *this;
 }
