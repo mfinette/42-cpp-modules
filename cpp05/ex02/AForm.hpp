@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 10:01:38 by mfinette          #+#    #+#             */
-/*   Updated: 2023/11/16 10:20:35 by mfinette         ###   ########.fr       */
+/*   Created: 2024/01/08 11:39:41 by mfinette          #+#    #+#             */
+/*   Updated: 2024/01/08 13:50:52 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@
 #include "Bureaucrat.hpp"
 
 using std::string;
-using std::exception;
 
 class Bureaucrat;
 
 class	AForm
 {
-	private:
+	protected:
 		const string	_name;
+		const string	_target;
 		bool			_signed;
 		const int		_gradetosign;
 		const int		_gradetoexec;
-		AForm();
+						AForm();
 		
 	public:
 		// Constructors, destructors and operator
-						AForm(string const &name, const int &gradetosign, const int &gradetoexec);
+						AForm(string const &name, const string &target, const int &gradetosign, const int &gradetoexec);
 						AForm(const AForm &src);
-		virtual			~AForm();
+						~AForm();
 		AForm			&operator=(const AForm &src);
 
 		// Getters
@@ -44,13 +44,23 @@ class	AForm
 
 		// Methods
 		void			beSigned(const Bureaucrat &b);
-		virtual void	execute(Bureaucrat const & executor) const = 0;
+		virtual	void	execute(const Bureaucrat &executor) = 0;
 
-		// Exception
-		class	FormNotSigned : public exception
-		{
-			public:
-				const char * what() const throw();
+		// Exceptions
+		class GradeTooLowException: public std::exception {
+			virtual const char*	what() const throw();
+		};
+
+		class GradeTooHighException: public std::exception {
+			virtual const char*	what() const throw();
+		};
+
+		class AlreadySignedException: public std::exception {
+			virtual const char*	what() const throw();
+		};
+
+		class ExecUnsignedException: public std::exception {
+			virtual const char*	what() const throw();
 		};
 };
 

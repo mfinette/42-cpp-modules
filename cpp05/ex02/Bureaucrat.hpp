@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:46:44 by mfinette          #+#    #+#             */
-/*   Updated: 2023/11/14 16:19:15 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:45:13 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <string>
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 using std::string;
 using std::cout;
@@ -23,7 +23,7 @@ using std::exception;
 using std::endl;
 using std::ostream;
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -60,7 +60,8 @@ class Bureaucrat
 		};
 		
 		// Methods
-		void				signForm(Form &form);
+		void				signForm(AForm &form);
+		void				executeForm(AForm &form);
 };
 
 // Ostream operator

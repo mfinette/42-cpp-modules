@@ -6,7 +6,7 @@
 #    By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 13:37:00 by mfinette          #+#    #+#              #
-#    Updated: 2023/11/16 09:42:45 by mfinette         ###   ########.fr        #
+#    Updated: 2024/01/08 15:08:15 by mfinette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM			= rm -rf
 
 OBJDIR = .objFiles
 
-FILES		= main Bureaucrat AForm
+FILES		= main Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))

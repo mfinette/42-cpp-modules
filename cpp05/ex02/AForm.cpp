@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 17:11:17 by mfinette          #+#    #+#             */
-/*   Updated: 2023/11/14 16:09:23 by mfinette         ###   ########.fr       */
+/*   Created: 2024/01/08 11:39:50 by mfinette          #+#    #+#             */
+/*   Updated: 2024/01/08 13:18:30 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ AForm::AForm() : _name("Default"), _signed(false), _gradetosign(150), _gradetoex
 {
 }
 
-AForm::AForm(string const &name, const int &gradetosign, const int &gradetoexec) : _name(name), _signed(false), _gradetosign(gradetosign), _gradetoexec(gradetoexec)
+AForm::AForm(string const &name, const string &target, const int &gradetosign, const int &gradetoexec) : _name(name), _target(target), _signed(false), _gradetosign(gradetosign), _gradetoexec(gradetoexec)
 {
 	if (gradetosign > 150 || gradetoexec > 150)
 		throw(Bureaucrat::GradeTooLowException());
@@ -75,7 +75,22 @@ std::ostream &operator<<(std::ostream &out, AForm &src) {
 	return out;
 }
 
-const	char	*AForm::FormNotSignedException::what() const throw()
+const char*	AForm::GradeTooLowException::what() const throw()
 {
-	return ("Form not signed");
+	return "his grade is too low";
+}
+
+const char*	AForm::GradeTooHighException::what() const throw()
+{
+	return "his grade is too high";
+}
+
+const char*	AForm::AlreadySignedException::what() const throw()
+{
+	return "cannot sign a form twice!";
+}
+
+const char*	AForm::ExecUnsignedException::what() const throw()
+{
+	return "cannot execute unsigned form!";
 }

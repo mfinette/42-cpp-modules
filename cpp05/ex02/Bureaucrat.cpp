@@ -6,12 +6,12 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:46:42 by mfinette          #+#    #+#             */
-/*   Updated: 2023/11/14 16:15:48 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:50:11 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 //Constructors  Destructors and Operator
 
 Bureaucrat::Bureaucrat() : _grade(1), _name("Default")  
@@ -75,14 +75,30 @@ void	Bureaucrat::increaseGrade()
 
 // Methods
 
-void Bureaucrat::signForm(Form &form) {
-	try {
+void Bureaucrat::signForm(AForm &form)
+{
+	try
+	{
 		form.beSigned(*this);
-		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+		std::cout << this->getName() << " signed: " << form.getName() << std::endl;
 	}
-	catch (Bureaucrat::GradeTooLowException &e) {
-		std::cout << this->getName() << " couldn't sign " << form.getName() <<
+	catch (Bureaucrat::GradeTooLowException &e)
+	{
+		std::cout << this->getName() << " couldn't sign: " << form.getName() <<
 			" because: " << e.what() << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->_name << " executed: " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << this->_name << " cannot execute: " << form.getName() << " because: " << e.what() << std::endl;
 	}
 }
 
