@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:41:57 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/08 17:04:56 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:44:36 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main() {
 		form = Marco.makeForm("Not a Form", "Nobody");
 		Polo.signForm(*form);
 		Polo.executeForm(*form);
+		delete form;
 	}
 	catch (std::exception &e){
 		std::cout << "Error : " << e.what() << std::endl;

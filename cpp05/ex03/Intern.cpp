@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:19:06 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/08 17:03:54 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:41:50 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ Intern::~Intern()
 
 AForm	*Intern::makeForm(const string &name, const string &target)
 {
-	string	formNames[] = {"presidential pardon", "lobotomy request", "shrubbery creation"};
-	AForm	*Forms[] = {new PresidentialPardonForm(target),new RobotomyRequestForm(target), new ShrubberyCreationForm(target)};
+	string	formNames[] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+	AForm	*Forms[] = {new PresidentialPardonForm(target), new RobotomyRequestForm(target), new ShrubberyCreationForm(target)};
 	
 	for (int i = 0; i < 3; i++)
 	{

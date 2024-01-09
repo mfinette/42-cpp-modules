@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:59:35 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/08 16:05:09 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:42:20 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	RobotomyRequestForm::executeConcrete() const
 	if (rand() % 2)
 		cout << this->_target << " has been succesfully robotomized" << std::endl;
 	else
-		cout << "robotomy on " << this->_target << "failed" << std::endl;
+		cout << "robotomy on " << this->_target << " failed" << std::endl;
 }
 
 RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {

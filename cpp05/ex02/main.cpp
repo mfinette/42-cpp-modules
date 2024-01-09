@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:41:57 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/08 15:22:26 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:36:10 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	main() {
 	Bureaucrat	Hervé("Hervé", 1);
 	Bureaucrat	Alain("Alain", 42);
-	std::cout << Hervé << Alain;
+	std::cout << Hervé << std::endl << Alain << std::endl << std::endl;
 
 	ShrubberyCreationForm form1("home");
 	PresidentialPardonForm form2("Kevin");
@@ -38,7 +38,7 @@ int	main() {
 	catch (std::exception &e) {
 		std::cout << "Error : " << e.what() << std::endl;
 	}
-
+	std::cout << std::endl << std::endl;
 	std::cout << "----------------------------------------------------" << std::endl;
 	std::cout << "Trying to sign and execute 2 - PresidentialPardonForm : " << std::endl;
 	std::cout << "----------------------------------------------------" << std::endl;
@@ -50,20 +50,25 @@ int	main() {
 	catch (std::exception &e) {
 		std::cout << "Error : " << e.what() << std::endl;
 	}
-
+	std::cout << std::endl << std::endl;
 	std::cout << "-------------------------------------------------------" << std::endl;
 	std::cout << "Trying to sign and execute 3 - RobotomyRequestForm : " << std::endl;
 	std::cout << "-------------------------------------------------------" << std::endl;
 	try {
 		Hervé.signForm(form3);
+		std::cout << std::endl;
 		std::cout << "Attempt 1 : ";
 		Hervé.executeForm(form3);
+		std::cout << std::endl;
 		std::cout << "Attempt 2 : ";
 		Hervé.executeForm(form3);
+		std::cout << std::endl;
 		std::cout << "Attempt 3 : ";
 		Hervé.executeForm(form3);
+		std::cout << std::endl;
 		std::cout << "Attempt 4 : ";
 		Hervé.executeForm(form3);
+		std::cout << std::endl;
 		std::cout << "Attempt 5 : ";
 		Hervé.executeForm(form3);
 		std::cout << std::endl;
@@ -71,7 +76,7 @@ int	main() {
 	catch (std::exception &e) {
 		std::cout << "Error : " << e.what() << std::endl;
 	}
-	
+	std::cout << std::endl << std::endl;
 	std::cout << "---------------------------------" << std::endl;
 	std::cout << "Trying to execute unsigned form : " << std::endl;
 	std::cout << "---------------------------------" << std::endl;
@@ -84,7 +89,7 @@ int	main() {
 	catch (std::exception &e) {
 		std::cout << "Error : " << e.what() << std::endl;
 	}
-
+	std::cout << std::endl << std::endl;
 	std::cout << "-------------------------------------------" << std::endl;
 	std::cout << "Trying to execute form too high for Alain : " << std::endl;
 	std::cout << "-------------------------------------------" << std::endl;
