@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:57:31 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/10 17:34:12 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:35:31 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int	main()
 	base = generate();
 	identify(base);
 	identify(*base);
+	delete base;
 	return 0;
 }
