@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:57:02 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/11 12:44:09 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:00:46 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ class ScalarConverter
 	static void				printDouble(string const &str);
 	
 	// CONSTRUCTORS AND DESTRUCTOR
-						ScalarConverter();
-						ScalarConverter(ScalarConverter &src);
-						~ScalarConverter();
+							ScalarConverter();
+							ScalarConverter(ScalarConverter &src);
+							~ScalarConverter();
 	public:
 	// OPERATOR
-	ScalarConverter		&operator=(const ScalarConverter &rhs);
+	ScalarConverter			&operator=(const ScalarConverter &rhs);
 
 	// METHOD
 	static void				convert(string const &str);
