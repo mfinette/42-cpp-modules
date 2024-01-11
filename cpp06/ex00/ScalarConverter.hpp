@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:57:02 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/09 20:36:13 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:44:09 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,27 @@ class ScalarConverter
 	// UTILS
 	
 	// CHECKERS
-	bool				checkChar(string const &str);
-	bool				checkInt(string const &str);
-	bool				checkFloat(string const &str);
-	bool				checkDouble(string const &str);
+	static bool				checkChar(string const &str);
+	static bool				checkInt(string const &str);
+	static bool				checkFloat(string const &str);
+	static bool				checkDouble(string const &str);
 	
 	// PRINTERS
-	void				printChar(string const &str);
-	void				printInt(string const &str);
-	void				printFloat(string const &str);
-	void				printDouble(string const &str);
+	static void				printChar(string const &str);
+	static void				printInt(string const &str);
+	static void				printFloat(string const &str);
+	static void				printDouble(string const &str);
 	
-	public:
 	// CONSTRUCTORS AND DESTRUCTOR
 						ScalarConverter();
 						ScalarConverter(ScalarConverter &src);
 						~ScalarConverter();
-	
+	public:
 	// OPERATOR
 	ScalarConverter		&operator=(const ScalarConverter &rhs);
 
 	// METHOD
-	void				convert(string const &str);
+	static void				convert(string const &str);
 };
 
 #endif

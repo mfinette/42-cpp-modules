@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:03:22 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/10 16:29:48 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:42:58 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ struct	Data
 class	Serializer
 {
 	private:
-
-	public:
 	// CONSTRUCTORS DESTRUCTOR
 							Serializer();
 							Serializer(const Serializer &src);
 							~Serializer();
+
+	public:
 
 	// METHODS
 		static uintptr_t	serialize(Data* ptr);
