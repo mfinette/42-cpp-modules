@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:19:45 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/15 20:11:36 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:57:12 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		Span::longestSpan()
 	if (vector.size() < 2)
 		throw std::out_of_range("To calculate span, container needs to have at least 2 elements");
 	sort(vector.begin(), vector.end());
-	longest = vector[vector.size()] - vector[0];
+	longest = vector[vector.size() - 1] - vector[0];
 	return longest;
 }
 
