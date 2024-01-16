@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:27:53 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/15 21:44:10 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:35:08 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int main()
 		cout << *it << endl;
 		++it;
 	}
-	stack<int> s(mstack);
 	/////////////////////////////// LIST ///////////////////////////////
 	cout << endl << "// LIST EXAMPLE //" << endl;
 	list<int> lstack;
