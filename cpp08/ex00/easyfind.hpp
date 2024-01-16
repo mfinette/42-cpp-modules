@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:44:40 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/11 16:23:04 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:03:53 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ using std::cout;
 using std::endl;
 using std::vector;
 using std::list;
+using std::distance;
 
 template<typename T>
 typename T::iterator easyfind(T &container, int n) {

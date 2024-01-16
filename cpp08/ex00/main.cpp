@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:45:19 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/11 16:31:07 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:07:35 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ int main()
 	myVector.push_back(5);	
 	int valueToFindVector = 3;
 
-	std::vector<int>::iterator itVector = easyfind(myVector, valueToFindVector);
-	// cout << "" TODOD PRINTF NOUBLIE PAS
-	if (itVector != myVector.end()) {
-		std::cout << "Value " << valueToFindVector << " found in the vector at position: " << std::distance(myVector.begin(), itVector) << std::endl;
-	} else {
-		std::cout << "Value " << valueToFindVector << " not found in the vector." << std::endl;
-	}
+	vector<int>::iterator itVector = easyfind(myVector, valueToFindVector);
+	cout << "// CHECKING IF '3' IS IN VECTOR //" << endl;
+	if (itVector != myVector.end())
+		cout << "Value " << valueToFindVector << " found in the vector at position: " << distance(myVector.begin(), itVector) << endl << endl;
+	else
+		cout << "Value " << valueToFindVector << " not found in the vector." << endl;
 
 	// Example with a different container (list)
-	std::list<int> myList;
+	list<int> myList;
 	myList.push_back(10);
 	myList.push_back(20);
 	myList.push_back(30);
@@ -40,13 +39,12 @@ int main()
 	myList.push_back(50);
 	int valueToFindList = 20;
 
-	std::list<int>::iterator itList = easyfind(myList, valueToFindList);
-
-	if (itList != myList.end()) {
-		std::cout << "Value " << valueToFindList << " found in the list." << std::endl;
-	} else {
-		std::cout << "Value " << valueToFindList << " not found in the list." << std::endl;
-	}
+	list<int>::iterator itList = easyfind(myList, valueToFindList);
+	cout << "// CHECKING IF '3' IS IN LIST //" << endl;
+	if (itList != myList.end())
+		cout << "Value " << valueToFindList << " found in the list." << endl;
+	else
+		cout << "Value " << valueToFindList << " not found in the list." << endl;
 
 	return 0;
 }
