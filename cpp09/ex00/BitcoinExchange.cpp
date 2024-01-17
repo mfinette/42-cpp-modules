@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:39:45 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/16 22:13:37 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:17:31 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	BitcoinExchange::initMap(ifstream &csvFile)
 
 		if (getline(iss, date, ',') && iss >> price)
 			this->_csv[date] = price;
-		// else
-		// 	cerr << "Error parsing line: " << tmp << endl;
 	}
 }
 
@@ -47,7 +45,7 @@ void BitcoinExchange::printCSV()
 	cout << "For DATE 2022-02-26, price = " << this->_csv["2022-02-26"] << endl;
 }
 
-void BitcoinExchange::processInfo(std::ifstream &inputFile)
+void BitcoinExchange::processInfo(ifstream &inputFile)
 {
 	string	expectedHeader = "date | value";
 	string	firstLine;
@@ -58,29 +56,50 @@ void BitcoinExchange::processInfo(std::ifstream &inputFile)
 	{
 		if (firstLine != expectedHeader)
 		{
-			std::cerr << "Error: Invalid header in the input file. Expected: \"date | value\"" << expectedHeader << std::endl;
+			cerr << "Error: Invalid header in the input file. Expected: \"date | value\"" << endl;
 			return;
 		}
 	}
 	else
 	{
-		std::cerr << "Error reading the first line from the input file." << std::endl;
+		cerr << "Error reading the first line from the input file." << endl;
 		return;
 	}
-	while (std::getline(inputFile, line))
+	while (getline(inputFile, line))
 	{
 		status = parseLine(line);
 		if (status == NO_ERRORS)
-			cout << "parsed: " << line << endl;
+			printLine(line);
 		else
 			chooseError(status, line);
 	}
 }
 
+void	BitcoinExchange::printLine(string &line)
+{
+	istringstream iss(line);
+	string datePart, valuePart;
+	char delimiter;
+	double	result;
+
+	iss >> ws >> datePart >> ws >> delimiter >> ws >> valuePart;
+	map<string, double>::iterator it = _csv.lower_bound(datePart);
+	if (it == _csv.begin() || (it != _csv.end() && it->first != datePart))
+		--it;
+	if (it != _csv.end())
+		result = strtod(valuePart.c_str(), NULL) * it->second;
+	else
+	{
+		it--;
+		result = strtod(valuePart.c_str(), NULL) * (it->second);
+	}
+	cout << datePart << " => " << valuePart << " = " << result << endl;
+}
+
 void	chooseError(int status, string line)
 {
-	std::istringstream iss(line);
-	std::string datePart, valuePart;
+	istringstream iss(line);
+	string datePart, valuePart;
 	char delimiter;
 
 	iss >> datePart >> std::ws >> delimiter >> std::ws >> valuePart;
@@ -108,7 +127,7 @@ void	chooseError(int status, string line)
 	cout << endl;
 }
 
-bool isValidDateFormat(const std::string &date)
+bool isValidDateFormat(const string &date)
 {
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
 		return false;
@@ -123,14 +142,14 @@ bool isValidDateFormat(const std::string &date)
 	return true;
 }
 
-bool isValidDoubleFormat(const std::string &value)
+bool isValidDoubleFormat(const string &value)
 {
 	char *endptr;
 	strtod(value.c_str(), &endptr);
 	return *endptr == '\0';
 }
 
-int	isValidDoubleValue(const std::string &value)
+int	isValidDoubleValue(const string &value)
 {
 	double tmp = strtod(value.c_str(), NULL);
 	if (tmp < 0)
@@ -141,7 +160,7 @@ int	isValidDoubleValue(const std::string &value)
 		return (NO_ERRORS);
 }
 
-bool isValidDateValue(const std::string& date)
+bool isValidDateValue(const string& date)
 {
 	if (date.length() != 10)
 		return false;
@@ -184,12 +203,15 @@ int	checkStatus(string date, string value)
 
 int parseLine(string &line)
 {
-	std::istringstream iss(line);
-	std::string datePart, valuePart;
+	istringstream iss(line);
+	string datePart, valuePart;
 	char delimiter;
 
-	if (iss >> datePart >> std::ws >> delimiter >> std::ws >> valuePart)
+	if (iss >> ws >> datePart >> ws >> delimiter >> ws >> valuePart)
 	{
+		size_t pos = line.find(delimiter);
+		if (isspace(line[pos + 2]) || isspace(line[pos -2]) || !isspace(line[pos + 1]) || !isspace(line[pos - 1]))
+			return INPUT_ERROR;
 		if (delimiter == '|' && iss.eof() && line.find(datePart) == 0)
 			return (checkStatus(datePart, valuePart));
 	}

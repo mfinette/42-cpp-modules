@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:31:09 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/16 21:40:44 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:40:37 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fstream>
 # include <sstream>
 # include <cstdlib>
+# include <ctype.h>
 
 using std::string;
 using std::map;
@@ -28,6 +29,7 @@ using std::cout;
 using std::endl;
 using std::cerr;
 using std::getline;
+using std::ws;
 
 // NO ERRORS //
 #define CORRECT_INPUT 4
@@ -54,6 +56,7 @@ class BitcoinExchange
 		void	initMap(ifstream &csvFile);
 		void	printCSV();	
 		void	processInfo(ifstream &inputFile);
+		void	printLine(string &line);
 };
 
 int		parseLine(string &line);
