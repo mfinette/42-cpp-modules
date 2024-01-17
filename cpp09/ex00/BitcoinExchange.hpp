@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:31:09 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/17 10:40:37 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:46:20 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,17 @@ class BitcoinExchange
 			map<string, double>	_csv;
 		
 	public:
-	
-				BitcoinExchange();
-				~BitcoinExchange();
-		void	initMap(ifstream &csvFile);
-		void	printCSV();	
-		void	processInfo(ifstream &inputFile);
-		void	printLine(string &line);
+		//CONSTRUCTORS DESTRUCTORS OPERATOR
+		BitcoinExchange		&operator=(BitcoinExchange const &src);
+							BitcoinExchange();
+							BitcoinExchange(BitcoinExchange const &src);
+							~BitcoinExchange();
+		//METHODS
+		void				initMap(ifstream &csvFile);
+		void				printCSV();	
+		void				processInfo(ifstream &inputFile);
+		void				printLine(string &line);
+		
 };
 
 int		parseLine(string &line);

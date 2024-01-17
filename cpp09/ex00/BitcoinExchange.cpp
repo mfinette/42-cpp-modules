@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:39:45 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/17 11:17:31 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:47:34 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
+BitcoinExchange::BitcoinExchange(BitcoinExchange const &src)
+{
+	*this = src;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &src)
+{
+	this->_csv = src._csv;
+	return *this;
+}
 void	BitcoinExchange::initMap(ifstream &csvFile)
 {
 	string	tmp;
