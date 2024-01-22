@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:22:58 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/17 13:41:10 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:34:00 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sstream>
 # include <string>
 # include <cstdlib>
+# include <limits.h>
 
 using std::string;
 using std::cout;
@@ -29,6 +30,7 @@ using std::istringstream;
 #define DIVIDE_BY_ZERO 0
 #define UNSOLVABLE 1
 #define SOLVED 2
+#define OVERFLOW 3
 
 
 class	RPN

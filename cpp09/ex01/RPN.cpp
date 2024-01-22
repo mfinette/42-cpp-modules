@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:25:10 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/17 13:42:10 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:39:21 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ bool RPN::checkExpression(string expression) {
 
 int RPN::solveExpression(string expression)
 {
-	stack<int> operandStack;
-	istringstream iss(expression);
-	string token;
-	int	operand1, operand2;
+	stack<int>		operandStack;
+	istringstream	iss(expression);
+	string 			token;
+	int				operand1, operand2;
+	long			check;
 
 	while (iss >> token) {
 		if (isdigit(token[0]) || (token[0] == '-' && token.size() > 1 && isdigit(token[1])))
@@ -71,7 +72,12 @@ int RPN::solveExpression(string expression)
 			operandStack.pop();
 			operand1 = operandStack.top();
 			operandStack.pop();
-
+			check = static_cast<long>(operand1) + static_cast<long>(operand2);
+			if (check > INT_MAX)
+				return OVERFLOW;
+			check = static_cast<long>(operand1) * static_cast<long>(operand2);
+			if (check > INT_MAX)
+				return OVERFLOW;
 			if (token == "+") operandStack.push(operand1 + operand2);
 			else if (token == "-") operandStack.push(operand1 - operand2);
 			else if (token == "*") operandStack.push(operand1 * operand2);

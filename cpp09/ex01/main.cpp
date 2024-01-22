@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:24:38 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/17 12:49:33 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:36:11 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int argc, char **argv)
 		case UNSOLVABLE :
 			return (ft_cerror("Error: Expression unsolvable"));
 			break;
+		case OVERFLOW :
+			return (ft_cerror("Error: Result overflowing INT MAX"));
 		case SOLVED :
 			return (0);
 			break;
