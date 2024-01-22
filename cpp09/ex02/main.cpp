@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:56:24 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/22 10:14:55 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:52:51 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ int	main(int argc, char* argv[])
 		return 1;
 	vector<int> vec = createVector(argc, argv);
 	deque<int> dq = createDeque(argc, argv);
-	cout << "Before: " << vec;
+	// cout << "Before: " << vec;
 	timerVec = std::clock();
 	fordJohnsonSort(vec);
 	timerVec = std::clock() - timerVec;
 	timerDeq = std::clock();
 	fordJohnsonSort(dq);
 	timerDeq = std::clock() - timerDeq;
-	cout << "After = " << vec;
-	cout << "Time to process a range of " << argc - 1 << " elements with std::vector = " << timerVec << " μs" << endl;
-	cout << "Time to process a range of " << argc - 1 << " elements with std::deque = " << timerDeq << " μs" << endl;
+	// cout << "After = " << vec;
+	// cout << "Time to process a range of " << argc - 1 << " elements with std::vector = " << timerVec << " μs" << endl;
+	// cout << "Time to process a range of " << argc - 1 << " elements with std::deque = " << timerDeq << " μs" << endl;
 	return 0;
 }

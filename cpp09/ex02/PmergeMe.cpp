@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:56:17 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/19 20:16:43 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:00:53 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,23 @@ ostream	&operator<<(ostream &out, const deque <int> &dq)
 	return out;	
 }
 
+std::ostream& operator<<(std::ostream& out, const std::vector<std::vector<int> >& matrix)
+{
+    for (size_t i = 0; i < matrix.size(); ++i)
+    {
+        out << "[ ";
+        for (size_t j = 0; j < matrix[i].size(); ++j)
+        {
+            out << matrix[i][j];
+            if (j < matrix[i].size() - 1)
+                out << ", ";
+        }
+        out << " ]";
+        if (i < matrix.size() - 1)
+            out << std::endl;
+    }
+    return out;
+}
 
 /////////////////////////////////// VECTOR ALGO ///////////////////////////////////
 
@@ -95,23 +112,50 @@ static void	swapFirstElement(vector<int> &vec1, vector<int> &vec2)
 	vec2.erase(vec2.begin());
 }
 
-static void binaryInsert(vector<int>& sortedVec, int value)
+void calculateGroupSizes(std::vector<size_t>& groupSizes, size_t totalElements)
 {
-	vector<int>::iterator insertionPos = sortedVec.begin();
-	while (insertionPos != sortedVec.end() && *insertionPos < value)
-		++insertionPos;
-	if (insertionPos == sortedVec.end() || *insertionPos != value)
-		sortedVec.insert(insertionPos, value);
+	size_t			currentSize = 2;
+	static size_t	lastSize = 0;
+	size_t			tmp;
+
+	while (totalElements > 0)
+	{
+		size_t groupSize = std::min(currentSize, totalElements);
+		groupSizes.push_back(groupSize);
+		totalElements -= groupSize;
+		if (lastSize == 0)
+		{
+			currentSize = 2;
+			lastSize = 2;
+		}
+		else
+		{
+			tmp = currentSize;
+			currentSize = (2 * lastSize) + currentSize;
+			lastSize = tmp;
+		}
+    }
 }
 
-static void fordJohnsonInsertion(vector<int>& pairBiggest, vector<int>& pairSmallest)
-{
-	vector<int> uninsertedElements;
-	uninsertedElements.insert(uninsertedElements.end(), pairSmallest.begin(), pairSmallest.end());
-	for (size_t i = 0; i < uninsertedElements.size(); ++i)
-		binaryInsert(pairBiggest, uninsertedElements[i]);
-	if (pairBiggest.front() == -1)
-		pairBiggest.erase(pairBiggest.begin());
+// Function to partition uninserted elements into groups
+std::vector<std::vector<int> > partitionIntoGroups(const std::vector<int>& uninsertedElements) {
+	std::vector<std::vector<int> > groupedElements;
+	std::vector<size_t> groupSizes;
+
+	// Step 5.1: Calculate group sizes
+	calculateGroupSizes(groupSizes, uninsertedElements.size());
+
+	// Step 5.1: Partition uninserted elements into groups
+	size_t currentIndex = 0;
+	for (size_t i = 0; i < groupSizes.size(); ++i) {
+		size_t groupSize = groupSizes[i];
+		std::vector<int> group(uninsertedElements.begin() + currentIndex, uninsertedElements.begin() + currentIndex + groupSize);
+		groupedElements.push_back(group);
+
+		currentIndex += groupSize;
+	}
+
+	return groupedElements;
 }
 
 void fordJohnsonSort(vector<int>& arr)
@@ -119,12 +163,16 @@ void fordJohnsonSort(vector<int>& arr)
 	vector<int>	sortedSequence;
 	vector<int>	pairSmallest;
 	vector<int>	pairBiggest;
-	
+	vector<vector<int> >	groups;
 	vector<pair<int, int> > pairs = partition(arr);
+	cout << "Pairs = " << pairs;
 	pairSmallest = getSmallValues(pairs);
 	pairBiggest = getBigValues(pairs);
+	cout << "PairBiggest = " << pairBiggest;
+	cout << "PairSmallest = " << pairSmallest;
 	swapFirstElement(pairBiggest, pairSmallest);
-	fordJohnsonInsertion(pairBiggest, pairSmallest);
+	groups = partitionIntoGroups(pairSmallest);
+	cout << "Groups = " << groups;
 	arr = pairBiggest;
 }
 

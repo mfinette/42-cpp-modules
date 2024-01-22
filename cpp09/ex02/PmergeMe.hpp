@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:56:20 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/19 20:18:37 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:00:36 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ using std::strtol;
 // UTILS //
 bool	ft_cerr(string error);
 
+template <typename T>
+struct GreaterComparator
+{
+    bool operator()(const T& a, const T& b) const {
+        return a > b;
+    }
+};
+
 // ALGO //
 void fordJohnsonSort(vector<int>& arr);
 void fordJohnsonSort(deque<int>& arr);
@@ -49,5 +57,6 @@ void fordJohnsonSort(deque<int>& arr);
 ostream	&operator<<(ostream &out, const vector <pair<int, int> > &pairs);
 ostream	&operator<<(ostream &out, const vector <int> &vec);
 ostream	&operator<<(ostream &out, const deque <int> &dq);
+ostream	&operator<<(ostream& out, const vector<vector<int> >& matrix);
 
 #endif
