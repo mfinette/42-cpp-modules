@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:56:24 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/22 11:52:51 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/22 21:07:17 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ deque<int>	createDeque(int argc, char* argv[])
 	}
 	return dq;
 }
+
+bool is_sorted(const std::vector<int>& vec)
+{
+    for (size_t i = 1; i < vec.size(); ++i) {
+        if (vec[i - 1] > vec[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 bool	parse_args(int argc, char** argv)
 {
@@ -78,15 +89,15 @@ int	main(int argc, char* argv[])
 		return 1;
 	vector<int> vec = createVector(argc, argv);
 	deque<int> dq = createDeque(argc, argv);
-	// cout << "Before: " << vec;
+	cout << "Before: " << vec;
 	timerVec = std::clock();
 	fordJohnsonSort(vec);
 	timerVec = std::clock() - timerVec;
 	timerDeq = std::clock();
 	fordJohnsonSort(dq);
 	timerDeq = std::clock() - timerDeq;
-	// cout << "After = " << vec;
-	// cout << "Time to process a range of " << argc - 1 << " elements with std::vector = " << timerVec << " μs" << endl;
-	// cout << "Time to process a range of " << argc - 1 << " elements with std::deque = " << timerDeq << " μs" << endl;
+	cout << "After = " << vec;
+	cout << "Time to process a range of " << argc - 1 << " elements with std::vector = " << timerVec << " μs" << endl;
+	cout << "Time to process a range of " << argc - 1 << " elements with std::deque = " << timerDeq << " μs" << endl;
 	return 0;
 }

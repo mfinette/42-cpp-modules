@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:56:17 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/22 14:00:53 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/22 21:11:40 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ std::ostream& operator<<(std::ostream& out, const std::vector<std::vector<int> >
         if (i < matrix.size() - 1)
             out << std::endl;
     }
+	out << endl;
     return out;
 }
 
@@ -112,7 +113,7 @@ static void	swapFirstElement(vector<int> &vec1, vector<int> &vec2)
 	vec2.erase(vec2.begin());
 }
 
-void calculateGroupSizes(std::vector<size_t>& groupSizes, size_t totalElements)
+static void calculateGroupSizes(std::vector<size_t>& groupSizes, size_t totalElements)
 {
 	size_t			currentSize = 2;
 	static size_t	lastSize = 0;
@@ -137,120 +138,196 @@ void calculateGroupSizes(std::vector<size_t>& groupSizes, size_t totalElements)
     }
 }
 
-// Function to partition uninserted elements into groups
-std::vector<std::vector<int> > partitionIntoGroups(const std::vector<int>& uninsertedElements) {
+static vector<std::vector<int> >	partitionIntoGroups(const std::vector<int>& uninsertedElements)
+{
 	std::vector<std::vector<int> > groupedElements;
 	std::vector<size_t> groupSizes;
-
-	// Step 5.1: Calculate group sizes
 	calculateGroupSizes(groupSizes, uninsertedElements.size());
-
-	// Step 5.1: Partition uninserted elements into groups
 	size_t currentIndex = 0;
-	for (size_t i = 0; i < groupSizes.size(); ++i) {
+	for (size_t i = 0; i < groupSizes.size(); ++i)
+	{
 		size_t groupSize = groupSizes[i];
 		std::vector<int> group(uninsertedElements.begin() + currentIndex, uninsertedElements.begin() + currentIndex + groupSize);
 		groupedElements.push_back(group);
-
 		currentIndex += groupSize;
 	}
-
 	return groupedElements;
+}
+
+static bool compareInts(int a, int b)
+{
+	return a < b;
+}
+
+static void orderGroups(std::vector<int>& sequence, const std::vector<std::vector<int> >& groups)
+{
+	vector<int>	tmp;
+	for (std::vector<std::vector<int> >::const_iterator it = groups.begin(); it != groups.end(); ++it)
+	{
+		std::vector<int> sortedGroup = *it;
+		std::sort(sortedGroup.begin(), sortedGroup.end(), compareInts);
+		tmp.insert(tmp.end(), sortedGroup.begin(), sortedGroup.end());
+	}
+	vector<int>::iterator finder = std::find(tmp.begin(), tmp.end(), -1);
+	if (finder != tmp.end())
+		tmp.erase(finder);
+	sequence = tmp;
+}
+
+static void	insertRemainingElements(const std::vector<int>& sourceVector, std::vector<int>& destinationVector)
+{
+	for (std::vector<int>::const_iterator it = sourceVector.begin(); it != sourceVector.end(); ++it)
+	{
+		std::vector<int>::iterator ite = std::lower_bound(destinationVector.begin(), destinationVector.end(), *it);
+		if (ite == destinationVector.end() || *ite != *it)
+			destinationVector.insert(ite, *it);
+	}
+	if (destinationVector.front() == -1)
+		destinationVector.erase(destinationVector.begin());
 }
 
 void fordJohnsonSort(vector<int>& arr)
 {
-	vector<int>	sortedSequence;
 	vector<int>	pairSmallest;
 	vector<int>	pairBiggest;
 	vector<vector<int> >	groups;
 	vector<pair<int, int> > pairs = partition(arr);
-	cout << "Pairs = " << pairs;
+
 	pairSmallest = getSmallValues(pairs);
 	pairBiggest = getBigValues(pairs);
-	cout << "PairBiggest = " << pairBiggest;
-	cout << "PairSmallest = " << pairSmallest;
 	swapFirstElement(pairBiggest, pairSmallest);
 	groups = partitionIntoGroups(pairSmallest);
-	cout << "Groups = " << groups;
+	orderGroups(pairSmallest, groups);
+	insertRemainingElements(pairSmallest, pairBiggest);
 	arr = pairBiggest;
 }
 
 ////////////////////////////////// DEQUE //////////////////////////////////
 
-void sortDequeDescending(deque<pair<int, int> >& deq)
+
+static void sortDequeDescending(std::deque<std::pair<int, int> >& deq)
 {
-	sort(deq.begin(), deq.end(), compareDescending);
+	std::sort(deq.begin(), deq.end(), compareDescending);
 }
-deque<pair<int, int> > partition(deque<int>& arr)
+
+static std::deque<std::pair<int, int> > partition(std::deque<int>& arr)
 {
-	deque<pair<int, int> > pairs;
-	for (deque<int>::iterator it = arr.begin(); it != arr.end(); )
+	std::deque<std::pair<int, int> > pairs;
+	for (size_t i = 0; i < arr.size(); i += 2)
 	{
-		int firstValue = *it;
-		++it;
-		int secondValue = (it != arr.end()) ? *it : -1;
-		pairs.push_back(make_pair(firstValue, secondValue));
-		if (it != arr.end())
-			++it;
+		if (i + 1 < arr.size())
+			pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
+		else
+			pairs.push_back(std::make_pair(arr[i], -1));
 	}
 	sortDequeDescending(pairs);
 	return pairs;
 }
 
-deque<int> getSmallValues(const deque<pair<int, int> >& pairs)
+static std::deque<int> getSmallValues(const std::deque<std::pair<int, int> >& pairs)
 {
-	deque<int> smallValues;
+	std::deque<int> smallValues;
 
-	for (deque<pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); ++it)
-		smallValues.push_back(min(it->first, it->second));
+	for (size_t i = 0; i < pairs.size(); ++i)
+		smallValues.push_back(std::min(pairs[i].first, pairs[i].second));
 	return smallValues;
 }
 
-deque<int> getBigValues(const deque<pair<int, int> >& pairs)
+static std::deque<int> getBigValues(const std::deque<std::pair<int, int> >& pairs)
 {
-	deque<int> bigValues;
+	std::deque<int> bigValues;
 
-	for (deque<pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); ++it)
-		bigValues.push_back(max(it->first, it->second));
+	for (size_t i = 0; i < pairs.size(); ++i)
+		bigValues.push_back(std::max(pairs[i].first, pairs[i].second));
 	return bigValues;
 }
 
-void swapFirstElement(deque<int>& deq1, deque<int>& deq2)
+static void swapFirstElement(std::deque<int>& vec1, std::deque<int>& vec2)
 {
-	deq1.push_front(deq2.front());
-	deq2.pop_front();
+	vec1.insert(vec1.begin(), vec2[0]);
+	vec2.erase(vec2.begin());
 }
 
-void binaryInsert(deque<int>& sortedDeque, int value)
+static void calculateGroupSizes(std::deque<size_t>& groupSizes, size_t totalElements)
 {
-	deque<int>::iterator insertionPos = sortedDeque.begin();
-	while (insertionPos != sortedDeque.end() && *insertionPos < value)
-		++insertionPos;
-	if (insertionPos == sortedDeque.end() || *insertionPos != value)
-		sortedDeque.insert(insertionPos, value);
+	size_t currentSize = 2;
+	static size_t lastSize = 0;
+	size_t tmp;
+
+	while (totalElements > 0)
+	{
+		size_t groupSize = std::min(currentSize, totalElements);
+		groupSizes.push_back(groupSize);
+		totalElements -= groupSize;
+		if (lastSize == 0)
+		{
+			currentSize = 2;
+			lastSize = 2;
+		}
+		else
+		{
+			tmp = currentSize;
+			currentSize = (2 * lastSize) + currentSize;
+			lastSize = tmp;
+		}
+	}
 }
 
-void fordJohnsonInsertion(deque<int>& pairBiggest, deque<int>& pairSmallest)
+static std::deque<std::deque<int> > partitionIntoGroups(const std::deque<int>& uninsertedElements)
 {
-	deque<int> uninsertedElements;
-	uninsertedElements.insert(uninsertedElements.end(), pairSmallest.begin(), pairSmallest.end());
-	for (deque<int>::iterator it = uninsertedElements.begin(); it != uninsertedElements.end(); ++it)
-		binaryInsert(pairBiggest, *it);
-	if (!pairBiggest.empty() && pairBiggest.front() == -1)
-		pairBiggest.pop_front();
+	std::deque<std::deque<int> > groupedElements;
+	std::deque<size_t> groupSizes;
+	calculateGroupSizes(groupSizes, uninsertedElements.size());
+	size_t currentIndex = 0;
+	for (size_t i = 0; i < groupSizes.size(); ++i)
+	{
+		size_t groupSize = groupSizes[i];
+		std::deque<int> group(uninsertedElements.begin() + currentIndex, uninsertedElements.begin() + currentIndex + groupSize);
+		groupedElements.push_back(group);
+		currentIndex += groupSize;
+	}
+	return groupedElements;
 }
 
-void fordJohnsonSort(deque<int>& arr)
+static void orderGroups(std::deque<int>& sequence, const std::deque<std::deque<int> >& groups)
 {
-	deque<int> sortedSequence;
-	deque<int> pairSmallest;
-	deque<int> pairBiggest;
+	std::deque<int> tmp;
+	for (std::deque<std::deque<int> >::const_iterator it = groups.begin(); it != groups.end(); ++it)
+	{
+		std::deque<int> sortedGroup = *it;
+		std::sort(sortedGroup.begin(), sortedGroup.end(), compareInts);
+		tmp.insert(tmp.end(), sortedGroup.begin(), sortedGroup.end());
+	}
+	std::deque<int>::iterator finder = std::find(tmp.begin(), tmp.end(), -1);
+	if (finder != tmp.end())
+		tmp.erase(finder);
+	sequence.assign(tmp.begin(), tmp.end());
+}
 
-	deque<pair<int, int> > pairs = partition(arr);
+static void insertRemainingElements(const std::deque<int>& sourceVector, std::deque<int>& destinationDeque)
+{
+	for (std::deque<int>::const_iterator it = sourceVector.begin(); it != sourceVector.end(); ++it)
+	{
+		std::deque<int>::iterator ite = std::lower_bound(destinationDeque.begin(), destinationDeque.end(), *it);
+		if (ite == destinationDeque.end() || *ite != *it)
+			destinationDeque.insert(ite, *it);
+	}
+	if (destinationDeque.front() == -1)
+	destinationDeque.erase(destinationDeque.begin());
+}
+
+void fordJohnsonSort(std::deque<int>& arr)
+{
+	std::deque<int> pairSmallest;
+	std::deque<int> pairBiggest;
+	std::deque<std::deque<int> > groups;
+	std::deque<std::pair<int, int> > pairs = partition(arr);
+
 	pairSmallest = getSmallValues(pairs);
 	pairBiggest = getBigValues(pairs);
 	swapFirstElement(pairBiggest, pairSmallest);
-	fordJohnsonInsertion(pairBiggest, pairSmallest);
-	arr = pairBiggest;
+	groups = partitionIntoGroups(pairSmallest);
+	orderGroups(pairSmallest, groups);
+	insertRemainingElements(pairSmallest, pairBiggest);
+	arr.assign(pairBiggest.begin(), pairBiggest.end());
 }
