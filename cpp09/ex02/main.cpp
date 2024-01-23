@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:56:24 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/22 21:07:17 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:45:42 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,23 @@ bool	parse_args(int argc, char** argv)
 	for (int i = 0; i < argc - 1; i++)
 	{
 		string str(argv[i + 1]);
+		if (!str.size())
+		{
+			delete[] arr;
+			return ft_cerr("Error: Empty argument detected");
+		}
 		if (str.find_first_not_of("0123456789") != string::npos)
-			return ft_cerr("Error: Arguments must be a sequence of positive integers.");
+		{
+			delete[]arr;
+			return ft_cerr("Error: Arguments must be a sequence of positive integers. Non numerical input detected");
+		}
 		char* endptr;
 		long value = strtol(argv[i + 1], &endptr, 10);
 		if (*endptr != '\0' || value > INT_MAX)
-			return ft_cerr("Error: Arguments must be a sequence of positive integers.");
+		{
+			delete[]arr;	
+			return ft_cerr("Error: Arguments must be a sequence of positive integers. Element over int_max detected");
+		}
 		arr[i] = static_cast<unsigned int>(value);
 	}
 	for (int i = 0; i < argc - 1; i++)
