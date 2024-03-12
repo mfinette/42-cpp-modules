@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:19:45 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/16 17:57:12 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/03/12 10:53:41 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	Span::addNumber(int N)
 		this->_container.push_back(N);	
 }
 
-
 int		Span::shortestSpan(void)
 {
 	int				shortest;
@@ -75,7 +74,7 @@ int		Span::longestSpan()
 void	Span::printSpan()
 {
 	for (size_t	i = 0; i < this->_N; i++)
-		cout << this->_container[i] << "";
+		cout << this->_container[i] << " ";
 	cout << endl;
 }
 

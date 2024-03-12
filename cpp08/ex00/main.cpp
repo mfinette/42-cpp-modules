@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:45:19 by mfinette          #+#    #+#             */
-/*   Updated: 2024/01/16 11:07:35 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/03/12 10:29:31 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int main()
 	int valueToFindList = 20;
 
 	list<int>::iterator itList = easyfind(myList, valueToFindList);
-	cout << "// CHECKING IF '3' IS IN LIST //" << endl;
+	cout << "// CHECKING IF '20' IS IN LIST //" << endl;
 	if (itList != myList.end())
-		cout << "Value " << valueToFindList << " found in the list." << endl;
+		cout << "Value " << valueToFindList << " found in the list at position: " << distance(myList.begin(), itList) << endl;
 	else
 		cout << "Value " << valueToFindList << " not found in the list." << endl;
 
