@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 20:55:50 by mfinette          #+#    #+#             */
-/*   Updated: 2024/03/12 10:59:52 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/04/14 16:14:19 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class MutantStack : public stack<T>
 		return *this;
 	}
 
-	typedef typename std::stack<T>::container_type::iterator iterator;
+	// CONST ITERATORS
 	typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 	const_iterator begin() const {
 		return this->c.begin();
@@ -47,6 +47,9 @@ class MutantStack : public stack<T>
 	const_iterator end() const {
 		return this->c.end();
 	};
+	
+	// ITERATORS
+	typedef typename std::stack<T>::container_type::iterator iterator;
 	iterator begin() {
 		return this->c.begin();
 	};

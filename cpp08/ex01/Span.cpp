@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:19:45 by mfinette          #+#    #+#             */
-/*   Updated: 2024/03/12 10:53:41 by mfinette         ###   ########.fr       */
+/*   Updated: 2024/04/14 16:10:45 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ Span::Span() : _N(0)
 {
 }
 
-Span::Span(const Span &src)
+Span::Span(const Span &src) : _N(src._N)
 {
-	(void)src;
+	this->_container.clear();
+	this->_container = src._container;
 }
 
 Span::Span(unsigned int N) : _N(N)

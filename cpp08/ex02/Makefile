@@ -5,49 +5,63 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/09 16:53:11 by mfinette          #+#    #+#              #
-#    Updated: 2024/01/15 21:30:36 by mfinette         ###   ########.fr        #
+#    Created: 2024/04/14 16:16:44 by mfinette          #+#    #+#              #
+#    Updated: 2024/04/14 16:45:43 by mfinette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= MutantStack
-	
-CC			= c++
-FLAGS		= -Wall -Wextra -Werror -g3 -std=c++98
-RM			= rm -rf
+# //// Executable Name /////
+NAME = MutantStack
 
+# //// Compiler and flags /////
+CPP = c++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+
+# //// Command to remove files /////
+RM = rm -rf
+
+# //// Directory for object files /////
 OBJDIR = .objFiles
 
-FILES		= main 
+# //// Source files /////
+SRCS = main.cpp
 
-SRC			= $(FILES:=.cpp)
-OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= MutantStack.hpp
-#Colors:
-GREEN		=	\e[92;5;118m
-YELLOW		=	\e[93;5;226m
-GRAY		=	\e[33;2;37m
-RESET		=	\e[0m
-CURSIVE		=	\e[33;3m
+# //// Object files /////
+OBJS = $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
 
+# //// Header file /////
+HEADER = MutantStack.hpp
+
+# //// Colors for terminal output /////
+GREEN = \e[92;118m
+YELLOW = \e[93;226m
+RESET = \e[0m
+
+# //// Rule to build all /////
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	@$(CC) $(OBJ) -o $(NAME)
-	@printf "$(_SUCCESS) $(GREEN)- Executable ready.\n$(RESET)"
+# //// Rule to build the executable /////
+$(NAME): $(OBJS) $(HEADER)
+	@$(CPP) $(OBJS) -o $(NAME)
+	@printf "$(GREEN)-  $(NAME) ready.$(RESET)\n"
 
+# //// Rule to compile source files to object files /////
 $(OBJDIR)/%.o: %.cpp $(HEADER)
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) $(OPTS) -c $< -o $@
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
+# //// Rule to clean object files /////
 clean:
-	@$(RM) $(OBJDIR) $(OBJ)
-	@printf "$(YELLOW)    - Object files removed.$(RESET)\n"
+	@$(RM) $(OBJDIR) $(OBJS)
+	@printf "$(YELLOW)- Object files removed.$(RESET)\n"
 
+# //// Rule to clean object files and executable /////
 fclean: clean
 	@$(RM) $(NAME)
-	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
+	@printf "$(YELLOW)-  $(NAME) removed.$(RESET)\n"
 
+# //// Rule to clean and rebuild /////
 re: fclean all
 
-.PHONY: all clean fclean re bonus norm
+# //// Phony targets ////
+.PHONY: all clean fclean re
