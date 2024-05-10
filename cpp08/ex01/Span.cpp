@@ -40,7 +40,7 @@ Span	&Span::operator=(const Span &rhs)
 void	Span::addNumber(int N)
 {
 	if (_container.size() > this->_N - 1)
-		throw	std::out_of_range("Container at max capacity: Can't add any more numbers");
+		throw	std::out_of_range("Container is full: Can't add any more numbers");
 	else
 		this->_container.push_back(N);	
 }
@@ -51,7 +51,7 @@ int		Span::shortestSpan(void)
 	vector<int>		vector = this->_container;
 	
 	if (vector.size() < 2)
-		throw std::out_of_range("To calculate span, container needs to have at least 2 elements");
+		throw std::out_of_range("Less than 2 elements in the container, can't calculate span");
 	sort(vector.begin(), vector.end());
 	shortest = abs(vector[0] - vector[1]);
 	for (size_t i = 0; i < vector.size(); i++)
@@ -72,10 +72,10 @@ int		Span::longestSpan()
 	return longest;
 }
 
-void	Span::printSpan()
+void Span::printSpan()
 {
-	for (size_t	i = 0; i < this->_N; i++)
-		cout << this->_container[i] << " ";
+	for (vector<int>::iterator it = _container.begin(); it != _container.end(); ++it)
+		cout << *it << " ";
 	cout << endl;
 }
 
